@@ -128,7 +128,7 @@ io.on("translate", (socket) => {
   // console.log("connect");
 });
 
-const PORT = process.env.PORT || 8002;
+const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {
   console.log("server is up on localhost:" + PORT);
 });
