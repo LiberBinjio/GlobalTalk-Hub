@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Translator</title>
+	<link rel="icon" href="static/img/icon.png">
+	<link rel="stylesheet" href="static/css/Translator_nav.css">
+	<link rel="stylesheet" href="static/css/Translator_main.css">
+</head>
+
+<body>
+	<!-- 背景 -->
+	<div class="bg"></div>
+	<!-- 大logo -->
+	<div class="logo">TeamsTranslator</div>
+	<!-- Home标签 -->
+	<div class="nav1">
+		<ul>
+			<li><a href="Index.html">Home</a></li>
+
+		</ul>
+	</div>
+	<!-- 导出会议记录标签 -->
+	<div class="nav2">
+		<ul>
+			<li><a id="save_target_historymsg">Export record</a></li>
+		</ul>
+	</div>
+	<!-- 透明度为65%的白底背景 -->
+	<div class="section"></div>
+	<!-- 原/目标语言会议记录和原/目标语言显示区 -->
+	<div class="inputbox_show">
+		<table>
+			<!-- 原语言会议记录区 -->
+			<textarea id="initial_lang_historymsg" placeholder=
+			"Source language record
+
+Instructions: 
+
+First select the source language, and then select the target language.
+
+Then press START to start, press PAUSE to pause, click CLEAR if you wanna clear the record.
+
+If the auto translation is not timely, you can also click the Translate button to manually translate."
+				style="top: 10%;left: 40%;width: 27%;height: 81%;"></textarea>
+			<!-- 目标语言会议记录区 -->
+			<textarea id="target_lang_historymsg" placeholder="Target language record"
+				style="top: 10%;left: 12%;width: 26.65%;height: 81%;"></textarea>
+			<!-- 原语言显示区 -->
+			<textarea id="initial_lang_input" placeholder="Current original text" style="top: 10%;height: 34%;"></textarea>
+			<!-- 目标语言显示区 -->
+			<textarea id="target_lang_output" placeholder="Current translation"
+				style="top: 47%;left: 68.5%;height: 37.2%;"></textarea>
+		</table>
+	</div>
+
+	<!-- 暂停/开始录音按钮 -->
+	<a class="button_translate"  id="button_translate" ">Translate</a>
+
+	<!-- 左侧边框栏内的文字 -->
+	<div class="nav_left">
+		<div class="language_line1" id="selectlang1">Source language</div>
+
+		<ul>
+			<li><a value="zh-CN" name="简体中文" onclick="update_initial_lang(event,this)">简体中文</a></li>
+			<li><a value="zh-TW" name="繁體中文" onclick="update_initial_lang(event,this)">繁體中文</a></li>
+			<li><a value="en" name="English" onclick="update_initial_lang(event,this)">English</a></li>
+			<li><a value="ru" name="Русский" onclick="update_initial_lang(event,this)">Русский</a></li>
+			<li><a value="ja" name="日本語" onclick="update_initial_lang(event,this)">日本語</a></li>
+			<li><a value="ko" name="한국어" onclick="update_initial_lang(event,this)">한국어</a></li>
+			<li><a onclick="Clear()">C L E A R</a></li>
+		</ul>
+	</div>
+	<!-- 右侧边框栏内的文字 -->
+	<div class="nav_right">
+		<div class="language_line2" id="selectlang2">Target language</div>
+		<ul>
+
+			<li><a value="zh-CN" name="简体中文" onclick="update_target_lang(event,this)">简体中文</a></li>
+			<li><a value="zh-TW" name="繁體中文" onclick="update_target_lang(event,this)">繁體中文</a></li>
+			<li><a value="en" name="English" onclick="update_target_lang(event,this)">English</a></li>
+			<li><a value="ru" name="Русский" onclick="update_target_lang(event,this)">Русский</a></li>
+			<li><a value="ja" name="日本語" onclick="update_target_lang(event,this)">日本語</a></li>
+			<li><a value="ko" name="한국어" onclick="update_target_lang(event,this)">한국어</a></li>
+			<li><a id="start_btn" onclick="start_and_pause()">S T A R T</a></li>
+
+		</ul>
+	</div>
+	<script src="./static/js/Translator.js"></script>
+</body>
+
+
+</html>

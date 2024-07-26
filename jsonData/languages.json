@@ -1,0 +1,12 @@
+{
+  "zh-CN": { "lang": "Simplified Chinese", "code": 0 },
+  "zh-TW": { "lang": "Traditional Chinese", "code": 1 },
+  "en": { "lang": "English", "code": 2 },
+  "ru-RU": { "lang": "Russian", "code": 3 },
+  "ja-JP": { "lang": "Japanese", "code": 4 },
+  "ko-KR": { "lang": "Korean", "code": 5 },
+  "de": { "lang": "German", "code": 6 },
+  "hi": { "lang": "Hindi", "code": 7 },
+  "ml": { "lang": "Malayalam", "code": 8 },
+  "es": { "lang": "Spanish", "code": 9 }
+}

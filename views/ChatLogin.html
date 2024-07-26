@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<head>
+  <title>ChatLogin</title>
+  <link rel="icon" href="static/img/icon.png">
+  <link rel="stylesheet" href="static/css/Adaptation.css">
+  <link rel="stylesheet" href="static/css/ChatLogin.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <style>
+    .nav-blue:hover {
+      color: var(--blue) !important;
+    }
+
+    .nav-yellow:hover {
+      color: var(--yellow) !important;
+    }
+
+    .nav-teal:hover {
+      color: var(--teal) !important;
+    }
+
+    .nav-orange:hover {
+      color: var(--orange) !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!--Navbar-->
+  <nav class="navbar navbar-expand-lg navbar-dark scrolled" style="background-color: #1b2e41">
+    <div class="container-fluid">
+      <a class="navbar-brand me-auto">GlobalTalk Hub</a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="mr-auto"></ul>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <!-- <li class="nav-item">
+            <a class="nav-link nav-orange" href="Index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-teal" href="About.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link nav-blue" href="Translator.html">Translator</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link nav-yellow" href="#">Home</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="centered-form" style="background-image:url(static/img/ChatLogin_bg.jpg);">
+    <div class="centered-form__box">
+      <div class="logo">Talk Hub</div>
+      <form action="ChatRoom.html">
+        <label>Nickname</label>
+        <div class="my-tooltip">
+          <ion-icon name="information-circle"></ion-icon>
+          <span class="my-tooltiptext">This name will be visible to everyone in the room</span>
+        </div>
+        <input autocomplete="off" type="text" id ="username" name="username" placeholder="Less than 20 characters" oninput = "if(value.length>21)value=value.slice(0,20);" onkeyup="this.value=this.value.replace(/[^\w_]/g,'');"required>
+        <label>RoomId</label><br />
+        <input autocomplete="off" type="text" id ="room" name="room" placeholder="8 Digits required" oninput = "if(value.length>8)value=value.slice(0,8); value=value.replace(/[^\d]/g,'');" required>
+        <!-- <label>Original Language</label><br /> -->
+        <!-- <select name="original_lang" id="original_lang" class="dropdown custom_select">
+          <option value="en">English</option>
+          <option value="zh-CN">Simplified Chinese</option>
+          <option value="zh-TW">Traditional Chinese</option>
+          <option value="ru">Russian</option>
+          <option value="ja">Japanese</option>
+          <option value="ko">Korean</option>
+          <option value="de">German</option>
+          <option value="hi">Hindi</option>
+          <option value="ml">Malayalam</option>
+          <option value="es">Spanish</option>
+        </select> -->
+        <!-- <br /><br /> -->
+        <label>Language</label>
+        <select name="target_lang" id="target_lang" class="dropdown custom_select">
+          <option value="zh-CN">Simplified Chinese</option>
+          <option value="zh-TW">Traditional Chinese</option>
+          <option value="en">English</option>
+          <option value="ru">Russian</option>
+          <option value="ja">Japanese</option>
+          <option value="ko">Korean</option>
+          <option value="de">German</option>
+          <option value="hi">Hindi</option>
+          <option value="ml">Malayalam</option>
+          <option value="es">Spanish</option>
+        </select>
+        <br /><br />
+        <button id="join">Join!</button>
+        
+      </form>
+    </div>
+  </div>
+  <!-- Icon CDN -->
+  <script type="module" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"></script>
+  <script type="text/javascript">
+    function ready() {
+        var url = window.location.toString();
+        const params = new URL(url).searchParams;
+        var room = "";
+        var target_lang = "";
+
+        if (params.get('room')) {
+            room = params.get('room');
+            document.getElementById("room").value = room;
+        }
+        if (params.get('target_lang')) {
+            target_lang = params.get('target_lang');
+            selectElement('target_lang', target_lang);
+        }
+    }
+
+    function selectElement(id, valueToSelect) {
+        let element = document.getElementById(id);
+        element.value = valueToSelect;
+    }
+    document.addEventListener("DOMContentLoaded", ready);
+</script>
+</body>
+
+</html>

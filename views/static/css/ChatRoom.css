@@ -1,0 +1,303 @@
+:root {
+  --orange: #F65314;
+  --green:#7CBB00;
+  --blue: #4285f2;
+  --yellow: #FFBB00;
+  --pink: #ffa3b0;
+  --purple: #495ce6;
+  --teal: #00A1F1;
+}
+
+body {
+  width: 100vw;
+  overflow-x: hidden;
+}
+
+#button_trans {
+  margin: 0 1em;
+}
+
+.profile-pic {
+  background: bisque;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+details:focus,
+summary:focus {
+  outline: none;
+}
+
+.translation {
+  color: #888;
+}
+
+summary {
+  color: rgb(179, 179, 179);
+  /* text-transform: uppercase; */
+}
+
+.chat_message {
+  font-size: 18px;
+}
+
+.secondary {
+  background: #fff;
+  color: #888;
+  border: 1px solid #888;
+  border-radius: 5px;
+  /* max-width: 400px; */
+}
+
+.primary {
+  border-radius: 5px;
+  background-color: var(--blue);
+  /* max-width: 400px; */
+}
+
+.users {
+  text-transform: capitalize;
+}
+
+button#back {
+  left:93%;
+  height: 5.8%;
+  width: 4%;
+  border-radius: 5px;
+  padding: 0.5em 1em;
+  background: #FFBB00;
+  font-size: 14px;
+  text-align:center;
+}
+button#back:hover {
+  background: #ff7300;
+  transition: 1s;
+}
+
+.secondary:hover {
+  border: #00A1F1;
+  color: #fff;
+}
+
+.trans-button-container {
+  margin-right: auto;
+}
+
+.trans-button-container button {
+  margin-left: 0 !important;
+}
+
+#chatroom__title__container {
+  text-align: center;
+  border-bottom: 1px solid #eeeeee;
+}
+
+#chatroom__title {
+  padding: 10px;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+#mic_button {
+  border-radius: 50%;
+  padding: 7px 10.5px;
+  margin: 0 0.5em 0 0.3em;
+  color: #00A1F1;
+  background-color: rgb(255, 255, 255);
+  border: 0.5px solid grey;
+
+}
+
+#mic_button:hover {
+
+  border: 0.5px solid grey;
+  color: #4285f2;
+}
+
+.bg {
+  background-color: #4285f2;
+  color: white !important;
+}
+
+.bg:hover {
+  background-color: #4285f2 !important;
+  color: white !important;
+}
+
+#usersContent {
+  text-align: initial;
+  padding-bottom: 1rem;
+  font-size: 1rem;
+  background: #2c2f3a;
+  color: #fff;
+}
+
+.user-toggler {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 5px;
+}
+
+.user-toggler:hover {
+  background-color: #fff;
+}
+
+.user-toggler:focus {
+  box-shadow: none;
+}
+
+.navbar-toggler-icon {
+  font-size: 13px;
+}
+
+#sidebar {
+  display: none;
+}
+
+/* Desktop Only */
+@media (min-width: 768px) {
+  #sidebar {
+    display: initial;
+  }
+  #back {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+  }
+  .user-toggler {
+    display: none;
+  }
+}
+
+/* Mobile Only */
+@media (max-width: 768px) {
+  #chatroom__title {
+    width: fit-content;
+    display: inline-block;
+  }
+}
+
+/* my-tooltip container */
+.my-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* my-tooltip text */
+.my-tooltip .my-tooltiptext {
+  visibility: hidden;
+  width: max-content;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 6px;
+
+  /* Position the my-tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+
+  width: 120px;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+/* Show the my-tooltip text when you mouse over the my-tooltip container */
+.my-tooltip:hover .my-tooltiptext {
+  visibility: visible;
+}
+
+/* Mobile only */
+@media (max-width: 768px) {
+  .my-tooltip .my-tooltiptext {
+    width: 120px;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+  }
+}
+
+._checkbox{
+	position: absolute;
+	top: 5%;
+	left: 74%;
+	}
+h {
+  font-size: small;
+  color: #999;
+}
+
+.tgl {
+  display: none;
+}
+.tgl, .tgl:after, .tgl:before, .tgl *, .tgl *:after, .tgl *:before, .tgl + .tgl-btn {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.tgl::-moz-selection, .tgl:after::-moz-selection, .tgl:before::-moz-selection, .tgl *::-moz-selection, .tgl *:after::-moz-selection, .tgl *:before::-moz-selection, .tgl + .tgl-btn::-moz-selection {
+  background: none;
+}
+.tgl::selection, .tgl:after::selection, .tgl:before::selection, .tgl *::selection, .tgl *:after::selection, .tgl *:before::selection, .tgl + .tgl-btn::selection {
+  background: none;
+}
+.tgl + .tgl-btn {
+  outline: 0;
+  display: block;
+  width: 4em;
+  height: 2em;
+  position: relative;
+  cursor: pointer;
+}
+.tgl + .tgl-btn:after, .tgl + .tgl-btn:before {
+  position: relative;
+  display: block;
+  content: "";
+  width: 50%;
+  height: 100%;
+}
+.tgl + .tgl-btn:after {
+  left: 0;
+}
+.tgl + .tgl-btn:before {
+  display: none;
+}
+.tgl:checked + .tgl-btn:after {
+  left: 50%;
+}
+
+
+.tgl-ios + .tgl-btn {
+  background: #fbfbfb;
+  border-radius: 2em;
+  padding: 2px;
+  -webkit-transition: all .4s ease;
+  transition: all .4s ease;
+  border: 1px solid #e8eae9;
+}
+.tgl-ios + .tgl-btn:after {
+  border-radius: 2em;
+  background: #fbfbfb;
+  -webkit-transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+  transition: left 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), padding 0.3s ease, margin 0.3s ease;
+  -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 4px 0 rgba(0, 0, 0, 0.08);
+}
+.tgl-ios + .tgl-btn:active {
+  -webkit-box-shadow: inset 0 0 0 2em #e8eae9;
+  box-shadow: inset 0 0 0 2em #e8eae9;
+}
+.tgl-ios + .tgl-btn:active:after {
+  padding-right: .8em;
+}
+.tgl-ios:checked + .tgl-btn {
+  background: #7CBB00;
+}
+.tgl-ios:checked + .tgl-btn:active {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.tgl-ios:checked + .tgl-btn:active:after {
+  margin-left: -.8em;
+}

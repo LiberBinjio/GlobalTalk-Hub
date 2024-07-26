@@ -1,0 +1,148 @@
+.custom_select {
+  width: 100%;
+  font-size: 16px;
+  height: 50px;
+  border: 1px solid #eeeeee;
+  padding: 12px;
+  outline: none;
+  /* -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none; */
+  /* background: url(https://raw.githubusercontent.com/arvinpoddar/react-animals/master/src/animals/alligator.png)
+    96% / 15% no-repeat #a893d6; */
+}
+
+#join {
+  border-radius: 0.7em;
+}
+
+.logo {
+	position: fixed;
+	top: 12%;
+	left: 50%;
+	transform: translate(-50%, -10%);
+	height: 50px;
+	padding: 3px;
+	color: #fff;
+	font-size: 60px;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	font-weight: 700;
+}
+
+.info {
+  width: auto !important;
+  background: none;
+  color: #777777;
+  font-size: 20px;
+  padding: 0;
+}
+
+.info:hover {
+  background: none;
+}
+
+/* my-tooltip container */
+.my-tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted #333744; /* If you want dots under the hoverable text */
+}
+
+/* my-tooltip text */
+.my-tooltip .my-tooltiptext {
+  visibility: hidden;
+  width: max-content;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 6px;
+
+  /* Position the my-tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the my-tooltip text when you mouse over the my-tooltip container */
+.my-tooltip:hover .my-tooltiptext {
+  visibility: visible;
+}
+
+
+
+.box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 400px;
+	padding: 40px;
+	background: rgba(0, 0, 0, .8);
+	box-sizing: border-box;
+	border-radius: 10px;
+}
+
+.box h2 {
+	margin: 0 0 30px;
+	padding: 0;
+	color: #fff;
+	text-align: center;
+	font-size: 30px;
+}
+
+.box .inputbox {
+	position: relative;
+}
+
+.box .inputbox input {
+	width: 100%;
+	padding: 10px 0;
+	font-size: 16px;
+	color: #fff;
+	letter-spacing: 1px;
+	margin-bottom: 20px;
+	border: none;
+	border-bottom: 1px solid #fff;
+	outline: none;
+	background: transparent;
+}
+
+.box .inputbox label {
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #fff;
+	padding: 10px 0;
+	font-size: 16px;
+	pointer-events: none;
+	transition: .5s;
+}
+
+.box .inputbox input:focus~label,
+.box .inputbox input:valid~label {
+	top: -18px;
+	left: 0;
+	color: #03a9f4;
+	font-size: 14px;
+}
+
+.box input[type="submit"] {
+	background: transparent;
+	border: none;
+	outline: none;
+	color: #fff;
+	background: #03A9F4;
+	padding: 12px 135px;
+	cursor: pointer;
+	border-radius: 5px;
+	font-size: 16px;
+}
+/* Mobile only */
+@media (max-width: 768px) {
+	.my-tooltip .my-tooltiptext {
+	  width: 200px;
+	  top: 100% !important;
+	  left: 50% !important;
+	  margin-left: -60px !important; /* Use half of the width (120/2 = 60), to center the tooltip */
+	}
+  }

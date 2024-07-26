@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<head>
+    <title>ChatRoom</title>
+    <link rel="icon" href="static/img/icon.png">
+    <link rel="stylesheet" href="static/css/Adaptation.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/css/ChatRoom.css">
+    <!-- <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"
+        integrity="sha512-F5QTlBqZlvuBEs9LQPqc1iZv2UMxcVXezbHzomzS6Df4MZMClge/8+gXrKw2fl5ysdk4rWjR0vKS7NNkfymaBQ=="
+        crossorigin="anonymous"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</head>
+
+<body data-title="my_chat_page">
+    <div class="row">
+        
+
+        <div class="col-12 col-md-10 chat__main" >
+
+            <div id="chatroom__title__container" class="navbar-light ">
+                <div id="chatroom__title"></div>
+                <button class="user-toggler navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#usersContent" aria-controls="usersContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="usersContent">
+                </div>
+            </div>
+            <div id="messages" class="chat__messages"></div>
+
+
+
+            <div class="compose">
+                <form id="message_form">
+                    <input placeholder="Enter your message here" id="input" name="message" required autocomplete="off">
+                    <span class="my-tooltip">
+                        <button type="button" id="mic_button" class="ml-auto secondary"  onclick="javascript:start_to_talk()"><ion-icon name = "microphone"></ion-icon></button>
+                    </span>
+                    <button id="button" type="submit" class="primary">Send</button>
+                </form>
+            </div>
+
+        </div>
+        <div class="col-12 col-md-2 chat__sidebar " id="sidebar" style="background-color:#6b47b8"> </div>
+        
+    </div>
+        
+    <div class="_checkbox">
+        <ul class='tg-list'>
+            <h>Original text</h>
+            <input class='tgl tgl-ios' id='cb2' type='checkbox'>
+            <label class='tgl-btn' for='cb2'></label>
+      </ul>
+    </div>
+    <script id="message-template" type="text/html" onblur="javascript:start_to_talk();">
+            <div class="message-container row">
+                <div class="profile-pic-container col-3 col-md-1">
+                    <div style="background-color:{{color}}; width:50px;" class="profile-pic">
+                        <img  src={{photo}} width="100%"></div>
+                    </div>
+                <div class="message col-9 col-md-11" id="{{message_id}}">
+                    <div style="margin-bottom: 0;">
+                        <div class="message__details">
+                            <span class="message__name">{{username}}</span>
+                            <span class="message__meta">{{createdAt}}</span>
+                        </div>
+                    </div>
+                    <p id="text_{{message_id}}" class="chat_message" >{{{message}}}</p>
+                    <!-- <details onClick="hello(this, '{{message_id}}')">
+                        <summary id="view_{{message_id}}">View translation</summary>
+                        <p id="translation_{{message_id}}" class="translation"></p>
+                    </details> -->
+                </div>
+            </div>
+        </script>
+
+    <!-- <script id="location-template" type="text/html">
+            <div class="message-container row">
+                <div class="profile-pic-container col-1">
+                    <div style="background-color:{{color}};" class="profile-pic">
+                        <img src={{photo}} width="100%"></div>
+                    </div>
+                <div class="message col-11" id="{{message_id}}">
+                    <p style="margin-bottom: 0;">
+                        <span class="message__name">{{username}}</span>
+                        <span class="message__meta">{{createdAt}}</span>
+                    </p>
+                </div>
+            </div>
+        </script> -->
+
+    <script id="sidebar-template" type="text/html">
+                <!-- <h2 class="room-title">{{room}}</h2> -->
+    <h3 class="list-title" style="
+                    display: flex;
+                    justify-content: space-between;
+                ">
+        <div >
+            👨👩🏻🧑🏿👧🏼
+        </div>
+        <div style="color:#7CBB00;">
+            Users ({{users.length}})
+        </div>
+        <a href="ChatLogin.html"><button id="back">Exit</button></a>
+        <button id="back" style="left: 88%;" onclick="sharelink();">Share</button>
+
+    </h3>
+    <ul class="users">
+        <li></li>
+        {{#users}}
+        <li>{{username}}</li>
+        {{/users}}
+    </ul>
+    </script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="static/js/ChatRoom.js"></script>
+
+</body>
+
+</html>

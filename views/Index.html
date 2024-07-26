@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="icon" href="static/img/icon.png">
+    <link rel="stylesheet" href="static/css/Index.css">
+</head>
+
+<body>
+    <section>
+        <img src="static/img/bg.jpg" id="bg">
+        <img src="static/img/moon.png" id="moon">
+        <img src="static/img/mountain.png" id="mountain">
+        <img src="static/img/road.png" id="road">
+        <h2 id="text">Translate Buddy</h2>
+    </section>
+    <script>
+        let bg = document.querySelector('#bg')
+        let moon = document.querySelector('#moon')
+        let mountain = document.querySelector('#mountain')
+        let road = document.querySelector('#road')
+        let text = document.querySelector('#text')
+
+        window.addEventListener('scroll', () => {
+            var value = window.scrollY;
+
+            bg.style.top = value * 0.5 + 'px';
+            moon.style.left = -value * 0.5 + 'px';
+            mountain.style.top = -value * 0.15 + 'px';
+            road.style.top = value * 0.15 + 'px';
+            text.style.top = value * 1 + 'px';
+        })
+    </script>
+
+    <div class="nav">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="About.html">About</a></li>
+            <li><a href="Translator.html">Translator</a></li>
+            <li><a href="ChatLogin.html">ChatRoom</a></li>
+
+        </ul>
+    </div>
+
+
+    <div class="text">
+        <p>Translate Buddy is a real-time translation tool for Teams meeting.</p>
+        <p>When the meeting is over, you can also export the meeting record.</p>
+    </div>
+    <div class="start"><a href="Translator.html">Start!</a></div>
+</body>
+
+</html>
