@@ -28,7 +28,7 @@ const {
 
 // };
 const app = express();
-app.use(express.static(__dirname+"/views",{index:"Index.html"}));
+app.use(express.static(__dirname+"/views",{index:"ChatLogin.html"}));
 var server = http.createServer(app);
 
 app.use(translateRoutes);

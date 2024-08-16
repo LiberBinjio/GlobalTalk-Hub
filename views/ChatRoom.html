@@ -1,27 +1,45 @@
 <!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <!-- 页面标题和图标 -->
     <title>ChatRoom</title>
     <link rel="icon" href="static/img/icon.png">
+    
+    <!-- 样式表链接 -->
     <link rel="stylesheet" href="static/css/Adaptation.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="static/css/ChatRoom.css">
-    <!-- <link rel="stylesheet" href=" https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"
-        integrity="sha512-F5QTlBqZlvuBEs9LQPqc1iZv2UMxcVXezbHzomzS6Df4MZMClge/8+gXrKw2fl5ysdk4rWjR0vKS7NNkfymaBQ=="
-        crossorigin="anonymous"></script> -->
+
+    <!-- 视口设置 -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    
+    <!-- 图标库 -->
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png" />
+    <link rel="icon" href="icons/favicon.svg" />
+
+    <script defer src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+    <script
+        src="https://cdn.socket.io/4.7.5/socket.io.min.js"
+        integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO"
+        crossorigin="anonymous"
+    ></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script defer src="static/js/script.js"></script>
+    <script defer src="static/js/webrtc.js"></script>
 </head>
 
 <body data-title="my_chat_page">
+    <!-- 页面整体布局 -->
     <div class="row">
-        
+        <!-- 聊天主区域 -->
+        <div class="col-12 col-md-10 chat__main">
 
-        <div class="col-12 col-md-10 chat__main" >
-
-            <div id="chatroom__title__container" class="navbar-light ">
+            <!-- 聊天室标题容器 -->
+            <div id="chatroom__title__container" class="navbar-light">
                 <div id="chatroom__title"></div>
                 <button class="user-toggler navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#usersContent" aria-controls="usersContent" aria-expanded="false"
@@ -31,21 +49,24 @@
                 <div class="collapse navbar-collapse" id="usersContent">
                 </div>
             </div>
+            <!-- 消息显示区域 -->
             <div id="messages" class="chat__messages"></div>
 
-
-
+            <!-- 消息输入框和发送按钮 -->
             <div class="compose">
                 <form id="message_form">
                     <input placeholder="Enter your message here" id="input" name="message" required autocomplete="off">
                     <span class="my-tooltip">
-                        <button type="button" id="mic_button" class="ml-auto secondary"  onclick="javascript:start_to_talk()"><ion-icon name = "microphone"></ion-icon></button>
+                        <button type="button" id="mic_button" class="ml-auto secondary" onclick="javascript:start_to_talk()">
+                            <ion-icon name="microphone"></ion-icon>
+                        </button>
                     </span>
                     <button id="button" type="submit" class="primary">Send</button>
                 </form>
             </div>
 
         </div>
+        <!-- 侧边栏 -->
         <div class="col-12 col-md-2 chat__sidebar " id="sidebar" style="background-color:#6b47b8"> </div>
         
     </div>
@@ -57,68 +78,115 @@
             <label class='tgl-btn' for='cb2'></label>
       </ul>
     </div>
+
+    <!-- 设置面板 -->
+    <div id="settings" v-if="showSettings">
+        <!-- 用户名输入 -->
+        <div id="name" class="label">
+            <span>Name:</span>
+            <input type="text" placeholder="Enter your name" v-model="name" v-on:keyup="updateNameAndPublish" />
+        </div>
+        <hr class="separator" />
+
+        <!-- 摄像头选择 -->
+        <div class="label">Camera 📹</div>
+        <div v-for="(videoDevice, i) in videoDevices" v-bind:key="videoDevice.deviceId">
+            <div v-bind:class="'link indent '+(selectedVideoDeviceId === videoDevice.deviceId ? 'active' : '')"
+                v-on:click="changeCamera(videoDevice.deviceId)">
+                {{videoDevice.label}}
+            </div>
+        </div>
+        <hr class="separator" />
+
+        <!-- 麦克风选择 -->
+        <div class="label">Microphone 🎙️</div>
+        <div v-for="(audioDevice, i) in audioDevices" v-bind:key="audioDevice.deviceId">
+            <div v-bind:class="'link indent '+(selectedAudioDeviceId === audioDevice.deviceId ? 'active' : '')"
+                v-on:click="changeMicrophone(audioDevice.deviceId)">
+                {{audioDevice.label}}
+            </div>
+        </div>
+        <hr class="separator" />
+
+        <!-- 复制房间链接 -->
+        <div class="link" v-on:click="copyURL">{{copyText || "Copy room link"}}</div>
+        <hr class="separator" />
+
+        <!-- 镜像/取消镜像 -->
+        <div class="link" v-on:click="toggleSelfVideoMirror">
+            Mirror / Unmirror
+            <small class="light">(self-view)</small>
+        </div>
+    </div>
+
+    <!-- 呼叫操作按钮 -->
+    <div id="actionsWrap" v-if="callInitiated">
+        <div id="actions">
+            <!-- 字幕区域 -->
+            <div id="subtitles" class="subtitles"></div>
+            
+            <!-- 语言选择按钮
+            <div id="languageSelectContainer">
+                <button id="languageButton">Speech Language</button>
+                <select id="languageSelect">
+                    <option value="en-US">English</option>
+                    <option value="es-ES">Spanish</option>
+                    <option value="fr-FR">French</option>
+                    <option value="de-DE">German</option>
+                    <option value="zh-CN">Chinese</option>
+                    <option value="ja-JP">Japanese</option>
+                    <option value="ko-KR">Korean</option>
+                    <option value="it-IT">Italian</option>
+                    <option value="ru-RU">Russian</option>
+                    <option value="pt-PT">Portuguese</option>
+                </select>
+            </div> -->
+            
+            <!-- 各种操作按钮 -->
+            <button v-bind:class="'icon-mic'+(audioEnabled ? '' : '-off')" v-on:click="audioToggle"></button>
+            <button v-bind:class="'icon-video'+(videoEnabled ? '' : '-off')" v-on:click="videoToggle"></button>
+            <button v-bind:class="'icon-message-square '+(showChat ? 'active' : '')" v-on:click="showChat = !showChat"></button>
+            <button v-if="!isMobileDevice" v-bind:class="'icon-monitor '+(screenShareEnabled ? 'active' : '')"
+                v-on:click="screenShareToggle"></button>
+            <button v-bind:class="'icon-exit'" v-on:click="exit"></button>
+            <button v-bind:class="'icon-more-horizontal '+(showSettings ? 'active' : '')"
+                v-on:click="showSettings = !showSettings"></button>
+        </div>
+    </div>
+    <!-- 消息模板 -->
     <script id="message-template" type="text/html" onblur="javascript:start_to_talk();">
-            <div class="message-container row">
-                <div class="profile-pic-container col-3 col-md-1">
-                    <div style="background-color:{{color}}; width:50px;" class="profile-pic">
-                        <img  src={{photo}} width="100%"></div>
-                    </div>
-                <div class="message col-9 col-md-11" id="{{message_id}}">
-                    <div style="margin-bottom: 0;">
-                        <div class="message__details">
-                            <span class="message__name">{{username}}</span>
-                            <span class="message__meta">{{createdAt}}</span>
-                        </div>
-                    </div>
-                    <p id="text_{{message_id}}" class="chat_message" >{{{message}}}</p>
-                    <!-- <details onClick="hello(this, '{{message_id}}')">
-                        <summary id="view_{{message_id}}">View translation</summary>
-                        <p id="translation_{{message_id}}" class="translation"></p>
-                    </details> -->
+        <div class="message-container row">
+            <div class="profile-pic-container col-3 col-md-1">
+                <div style="background-color:{{color}}; width:50px;" class="profile-pic">
+                    <img src={{photo}} width="100%">
                 </div>
             </div>
-        </script>
-
-    <!-- <script id="location-template" type="text/html">
-            <div class="message-container row">
-                <div class="profile-pic-container col-1">
-                    <div style="background-color:{{color}};" class="profile-pic">
-                        <img src={{photo}} width="100%"></div>
-                    </div>
-                <div class="message col-11" id="{{message_id}}">
-                    <p style="margin-bottom: 0;">
+            <div class="message col-9 col-md-11" id="{{message_id}}">
+                <div style="margin-bottom: 0;">
+                    <div class="message__details">
                         <span class="message__name">{{username}}</span>
                         <span class="message__meta">{{createdAt}}</span>
-                    </p>
+                    </div>
                 </div>
+                <p id="text_{{message_id}}" class="chat_message">{{{message}}}</p>
             </div>
-        </script> -->
-
-    <script id="sidebar-template" type="text/html">
-                <!-- <h2 class="room-title">{{room}}</h2> -->
-    <h3 class="list-title" style="
-                    display: flex;
-                    justify-content: space-between;
-                ">
-        <div >
-            👨👩🏻🧑🏿👧🏼
         </div>
-        <div style="color:#7CBB00;">
-            Users ({{users.length}})
-        </div>
-        <a href="ChatLogin.html"><button id="back">Exit</button></a>
-        <button id="back" style="left: 88%;" onclick="sharelink();">Share</button>
-
-    </h3>
-    <ul class="users">
-        <li></li>
-        {{#users}}
-        <li>{{username}}</li>
-        {{/users}}
-    </ul>
     </script>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
-    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <!-- 侧边栏模板 -->
+    <script id="sidebar-template" type="text/html">
+        <h3 class="list-title" style="display: flex; justify-content: space-between;">
+            <div>👨👩🏻🧑🏿👧🏼</div>
+            <div style="color:#7CBB00;">Users ({{users.length}})</div>
+            <a href="ChatLogin.html"><button id="back">Exit</button></a>
+            <button id="back" style="left: 88%;" onclick="sharelink();">Share</button>
+        </h3>
+        <ul class="users">
+            <li></li>
+            {{#users}}
+            <li>{{username}}</li>
+            {{/users}}
+        </ul>
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
         crossorigin="anonymous"></script>
