@@ -1,26 +1,99 @@
+/* 定义全局颜色变量 */
 :root {
-  --orange: #F65314;
-  --green:#7CBB00;
-  --blue: #4285f2;
-  --yellow: #FFBB00;
-  --pink: #ffa3b0;
-  --purple: #495ce6;
-  --teal: #00A1F1;
-}
+	--orange: #F65314;
+	--green:#7CBB00;
+	--blue: #4285f2;
+	--yellow: #FFBB00;
+	--pink: #ffa3b0;
+	--purple: #495ce6;
+	--teal: #00A1F1;
+  
+	--body-bg: #1e1f23;
+	--blanket-color: rgba(30, 31, 35, 0.9);
+	--intro-bg: #ffffff;
+	--intro-cl: #000000;
+	--chat-wrap-bg: #ffffff;
+	--chat-wrap-ch-bg: linear-gradient(white 30%, rgba(190, 179, 179, 0)),
+	  linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%,
+	  radial-gradient(50% 0, farthest-side, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)),
+	  radial-gradient(50% 100%, farthest-side, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 0 100%;
+	--chat-wrap-ch-bgc: white;
+	--chat-wrap-ch-cl: #000000;
+	--chat-wrap-cb-bg: #f6f6f6;
+	--chat-wrap-cb-cl: #000000;
+	--settings-bg: #ffffff;
+	--settings-cl: #000000;
+	--settings-link-h-bg: #f6f6f6;
+	--settings-link-h-cl: #000000;
+	--actions-bg: rgba(255, 255, 255, 0.9);
+	--actions-btn-cl: #000000;
+	--actions-btn-h-bg: rgba(255, 255, 255, 1);
+	--actions-btn-h-cl: #000000;
+	--actions-btn-a-bg: #fafafa;
+	--vh: 1vh;
+  }
+  
+  /* 全局样式 */
+  body {
+	width: 100vw;
+	overflow-x: hidden;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	line-height: 1.6;
+  }
+  
+  input {
+	display: block;
+	box-sizing: border-box;
+	border: 1px solid #efefef;
+	border-radius: 0.5rem;
+	padding: 0.6rem;
+	font-size: 1rem;
+  }
 
-body {
-  width: 100vw;
-  overflow-x: hidden;
-}
+/* 按钮样式 */
+button {
+	cursor: pointer;
+	border: none;
+  }
+  
+  #button_trans {
+	margin: 0 1em;
+  }
+  
+  #mic_button {
+	border-radius: 50%;
+	padding: 7px 10.5px;
+	margin: 0 0.5em 0 0.3em;
+	color: #00A1F1;
+	background-color: rgb(255, 255, 255);
+	border: 0.5px solid grey;
+  }
+  
+  #mic_button:hover {
+	color: #4285f2;
+  }
 
-#button_trans {
-  margin: 0 1em;
-}
-
+/* 头像样式 */
 .profile-pic {
-  background: bisque;
-  border-radius: 50%;
-  padding: 10px;
+	background: bisque;
+	border-radius: 50%;
+	padding: 10px;
+  }
+
+button#back {
+left:93%;
+height: 5.8%;
+width: 4%;
+border-radius: 5px;
+padding: 0.5em 1em;
+background: #FFBB00;
+font-size: 14px;
+text-align:center;
+}
+button#back:hover {
+background: #ff7300;
+transition: 1s;
 }
 
 details:focus,
@@ -53,25 +126,6 @@ summary {
   border-radius: 5px;
   background-color: var(--blue);
   /* max-width: 400px; */
-}
-
-.users {
-  text-transform: capitalize;
-}
-
-button#back {
-  left:93%;
-  height: 5.8%;
-  width: 4%;
-  border-radius: 5px;
-  padding: 0.5em 1em;
-  background: #FFBB00;
-  font-size: 14px;
-  text-align:center;
-}
-button#back:hover {
-  background: #ff7300;
-  transition: 1s;
 }
 
 .secondary:hover {
@@ -302,75 +356,7 @@ h {
   margin-left: -.8em;
 }
 
-@import "icomoon/style.css";
 
-:root {
-	--body-bg: #1e1f23;
-	--blanket-color: rgb(30, 31, 35, 0.9);
-	--intro-bg: #ffffff;
-	--intro-cl: #000000;
-	--chat-wrap-bg: #ffffff;
-	--chat-wrap-ch-bg: linear-gradient(white 30%, rgba(190, 179, 179, 0)),
-		linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%,
-		radial-gradient(50% 0, farthest-side, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)),
-		radial-gradient(50% 100%, farthest-side, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 0 100%;
-	--chat-wrap-ch-bg: linear-gradient(white 30%, rgba(255, 255, 255, 0)),
-		linear-gradient(rgba(255, 255, 255, 0), white 70%) 0 100%,
-		radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)),
-		radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0)) 0 100%;
-	--chat-wrap-ch-bgc: white;
-	--chat-wrap-ch-cl: #000000;
-	--chat-wrap-cb-bg: #f6f6f6;
-	--chat-wrap-cb-cl: #000000;
-	--settings-bg: #ffffff;
-	--settings-cl: #000000;
-	--settings-link-h-bg: #f6f6f6;
-	--settings-link-h-cl: #000000;
-	--actions-bg: rgba(255, 255, 255, 0.9);
-	--actions-btn-cl: #000000;
-	--actions-btn-h-bg: rgba(255, 255, 255, 1);
-	--actions-btn-h-cl: #000000;
-	--actions-btn-a-bg: #fafafa;
-	--vh: 1vh;
-}
-
-* {
-	outline: none;
-}
-html,
-body {
-	margin: 0px;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",
-		sans-serif;
-	line-height: 1.6;
-}
-input {
-	display: block;
-	box-sizing: border-box;
-	border: 1px solid #efefef;
-	border-radius: 0.5rem;
-	padding: 0.6rem;
-	font-size: 1rem;
-}
-.light {
-	color: #878787;
-}
-.red {
-	color: #c0392b;
-}
-.bold {
-	font-weight: bold;
-}
-.italic {
-	font-style: italic;
-}
-#blanket {
-	position: absolute;
-	z-index: -1;
-	min-height: 100vh;
-	/* mobile viewport bug fix */
-	min-height: -webkit-fill-available;
-}
 #videos {
 	display: flex;
 	justify-content: center;
@@ -676,67 +662,6 @@ input {
 	color: #e74c3c !important;
 }
 
-#callFeedbackWrap {
-	position: fixed;
-	top: 0px;
-	bottom: 0px;
-	left: 0px;
-	right: 0px;
-	background: var(--blanket-color);
-	z-index: 110;
-}
-#callFeedback {
-	position: absolute;
-	padding: 1rem;
-	box-sizing: border-box;
-	width: 100%;
-	max-width: 400px;
-	height: 320px;
-	top: 0px;
-	bottom: 0px;
-	left: 0px;
-	right: 0px;
-	margin: auto;
-	background: var(--settings-bg);
-	border-radius: 1rem;
-}
-#feedbackWrap .thankYou {
-	display: none;
-}
-#feedbackWrap:focus-within .question {
-	display: none;
-}
-#feedbackWrap:focus-within .thankYou {
-	display: block;
-}
-#feedbackButtons {
-	display: flex;
-	justify-content: space-between;
-	margin: 1rem auto;
-}
-#feedbackButtons button {
-	cursor: pointer;
-	border: none;
-	background: #7f8c8d;
-	border: 5px solid #7f8c8d;
-	width: 30%;
-	font-size: 2rem;
-	padding: 0.5rem 0px;
-	border-radius: 1rem;
-}
-#feedbackButtons button[data-cabin-event="call-quality-nah"] {
-	background: #c0392b;
-	border-color: #c0392b;
-}
-#feedbackButtons button[data-cabin-event="call-quality-yay"] {
-	background: #27ae60;
-	border-color: #27ae60;
-}
-#feedbackButtons button:active,
-#feedbackButtons button:focus {
-	border-color: #000;
-}
-
 #notification-container .notification {
 	background-color: #444;
 	color: #fff;
@@ -759,7 +684,6 @@ animation: fadeOut 3s forwards;
 #languageButton {
     padding: 5px 10px;
     cursor: pointer;
-	
 }
 
 #languageSelect {
@@ -800,7 +724,6 @@ animation: fadeOut 3s forwards;
 100% { opacity: 0; }
 }
   
-
 @media only screen and (max-width: 800px) {
 	#videos .video {
 		width: 50vw;
